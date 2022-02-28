@@ -69,4 +69,11 @@ def menu ():
 
 #main
 if __name__=='__main__':
-    menu()
+    #menu()
+    list =[]
+    list.append(2)
+    list.append(3)
+    list.append(4)
+    list.append(5)
+    for a in list:
+        print(a)
