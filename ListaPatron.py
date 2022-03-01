@@ -17,7 +17,7 @@ class ListaPatron:
                 "\nPatron: " + nodo_actual.patron+'\n')
             nodo_actual=nodo_actual.siguiente
     
-    def agregar (self,codigo,patron):
+    def agregarPatron (self,codigo,patron):
         nuevo_nodo=self.NodoPatron(codigo,patron)
         if self.cabeza == None and self.cola ==None:
             self.cabeza=nuevo_nodo
@@ -28,8 +28,7 @@ class ListaPatron:
         self.tamaño +=1
 
 
-lp=ListaPatron()
-lp.agregar('cod21','WBBBWBWWW')
-lp.agregar('cod22','WWWWBWWWB')
-lp.agregar('cod31”>','WBBBB')
-lp.imprimirPatron()
+
+#lp.agregar('cod21','WBBBWBWWW')
+#lp.agregar('cod22','WWWWBWWWB')
+#lp.agregar('cod31”>','WBBBB')

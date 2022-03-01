@@ -1,5 +1,10 @@
 from tkinter import filedialog, Tk
 from xml.etree import ElementTree as et
+from ListaPatron import ListaPatron 
+from ListaPisos import ListaPisos 
+
+lista_pisos= ListaPisos()  # lista simple donde se almacenara toda la informacion de los pisos
+patrones = ListaPatron()
 
 
 #funcion para obtener los archivos por una ventana emergente
@@ -18,19 +23,40 @@ def obtener_archivo(tipo):
         return None
 
 def cargar_archivo():
+    global lista_pisos
     archivo= obtener_archivo('xml')
     if archivo != None:
         archivo_xml=et.parse(archivo)
         raiz= archivo_xml.getroot()
-        
         try:
+            nombre=''
+            r=''
+            c=''
+            f=''
+            s=''
+            codigo=''
+            patron=''
             for elemento in raiz:
-                print(elemento.attrib)
+                for key in elemento.attrib:
+                    nombre=elemento.attrib[key]
                 for hijo in elemento:
-                    print(hijo.tag)
+                    a=hijo.text.strip()
+                    if hijo.tag == 'R':
+                        r=a
+                    elif hijo.tag =='C':
+                        c=a
+                    elif hijo.tag == 'F':
+                        f=a
+                    elif hijo.tag== 'S':
+                        s=a
                     if hijo.tag == 'patrones':
+                        patrones = ListaPatron()
                         for patr in hijo:
-                            print(patr.attrib)
+                            for key in patr.attrib:
+                                codigo=patr.attrib[key]
+                            patron=patr.text.strip()
+                            patrones.agregarPatron(codigo,patron)
+                lista_pisos.agregarPiso(nombre,r,c,f,s,patrones)
         except:
             print('error al leer el archivo xml')
         else:
@@ -38,8 +64,8 @@ def cargar_archivo():
     else:
         print('ERROR: *** No se ha seleccionado ningun archivo ***')
 
-
 def menu ():
+    global lista_pisos
     seleccion= 0
     while (seleccion !=4):
 
@@ -56,6 +82,7 @@ def menu ():
             seleccion = int(input('Seleccione una opcion: \n'))
             if seleccion == 1:
                 cargar_archivo()
+                lista_pisos.imprimirPisos()
             elif seleccion ==2:
                 pass
             elif seleccion == 3:
@@ -69,11 +96,4 @@ def menu ():
 
 #main
 if __name__=='__main__':
-    #menu()
-    list =[]
-    list.append(2)
-    list.append(3)
-    list.append(4)
-    list.append(5)
-    for a in list:
-        print(a)
+    menu()
