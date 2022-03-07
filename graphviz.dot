@@ -1,0 +1,36 @@
+
+digraph L{
+    node [shape = box fillcolor ="#FFEDBB" style =filled]
+    subgraph cluster_p{
+        label =cod21
+        bgcolor = "#398D9C"
+edge[dir = "none" color ="#398D9C"]
+raiz[label = "",fillcolor =white]
+Columna1[label= "", group=2,fillcolor =black];
+raiz-> Columna1;
+{rank=same;raiz;Columna1}
+Columna2[label= "", group=3,fillcolor =black];
+Columna1->Columna2;
+{rank=same;raiz;Columna2}
+Fila1[label="", group=1,fillcolor =black];
+raiz->Fila1;
+nodo1_fila1[label ="", fillcolor =white, group=2]
+Fila1->nodo1_fila1;
+{rank=same;Fila1;nodo1_fila1}
+                    
+nodo1_fila2[label ="", fillcolor =black, group=2]
+nodo1_fila1->nodo1_fila2
+{rank=same;Fila1;nodo1_fila2}
+                    
+Fila2[label="", group=1,fillcolor =white];
+Fila1-> Fila2;
+nodo2_fila1[label ="", fillcolor =white, group=2]
+Fila2->nodo2_fila1;
+{rank=same;Fila2;nodo2_fila1}
+                    
+nodo2_fila2[label ="", fillcolor =white, group=2]
+nodo2_fila1->nodo2_fila2
+{rank=same;Fila2;nodo2_fila2}
+                    
+    }
+}
